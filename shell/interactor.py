@@ -11,7 +11,8 @@ def run():
     print(format('sec-pass-gen', '-^50'))
     print('Author: zz')
     print('Never give up any chance to write English :)')
-    print('\n'*2)
+    print('-'*50)
+    print('\n')
 
 
     max_length = IntInputSanitizer(default_value=core.DEFAULT_MAX_LENGTH).get_input(
@@ -20,8 +21,8 @@ def run():
     )
 
     allow_char_mode = IntInputSanitizer(default_value=core.ALL,
-                                        fall_prompt='expect 0-7').get_input(
-        prompt='which char that password may contains? 5:exclude uppercase, 0:only digits, get more info from the docs, default is ALL (7)',
+                                        fall_prompt='expect 1-7').get_input(
+        prompt='which char that password may contains? 5:exclude uppercase, 1:only digits, get more info from the docs, default is ALL (7)',
         second_prompt='Leave blank use default (7)',
     )
 

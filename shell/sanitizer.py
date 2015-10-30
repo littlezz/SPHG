@@ -18,7 +18,7 @@ class BaseInputSanitizer:
     def clean(self, value):
         raise NotImplementedError
 
-    def get_input(self, prompt, second_prompt='', password=False):
+    def get_input(self, prompt, second_prompt='', password=False, final_new_line=True):
         print(prompt)
         while True:
 
@@ -32,6 +32,9 @@ class BaseInputSanitizer:
                 break
             else:
                 print(self.fall_prompt)
+
+        if final_new_line:
+            print()
 
         return ret
 
