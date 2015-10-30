@@ -13,12 +13,14 @@ EXCLUDE_UPPER = 5  # 101
 ONLY_DIGITS = 1  # 001
 
 
+DEFAULT_MAX_LENGTH = 10
+
 
 class BaseGenerator:
     """
     hash the main password and identification 3 times, then combine them and hash it twice
     """
-    def __init__(self, password1, max_length=10, allow_mode=ALL):
+    def __init__(self, password1, max_length=DEFAULT_MAX_LENGTH, allow_mode=ALL):
         assert isinstance(allow_mode, int), 'allow_mode must be integer'
 
         self.max_length = max_length
