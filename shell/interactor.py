@@ -1,5 +1,5 @@
 from core import core
-from .sanitizer import IntInputSanitizer, PasswordInputSanitizer
+from .sanitizer import IntInputSanitizer, StrInputSanitizer
 __author__ = 'zz'
 
 
@@ -16,24 +16,32 @@ def run():
 
     max_length = IntInputSanitizer(default_value=core.DEFAULT_MAX_LENGTH).get_input(
         prompt='Please Input the max length of the output password(default {})'.format(core.DEFAULT_MAX_LENGTH),
-        second_prompt='(Leave blank will use default) '
+        second_prompt='Leave blank will use default (10) '
     )
 
     allow_char_mode = IntInputSanitizer(default_value=core.ALL,
                                         fall_prompt='expect 0-7').get_input(
         prompt='which char that password may contains? 5:exclude uppercase, 0:only digits, get more info from the docs, default is ALL (7)',
-        second_prompt='Leave blank use default',
+        second_prompt='Leave blank use default (7)',
     )
 
-    password1 = PasswordInputSanitizer(default_value=None,
-                                       fall_prompt='Must input secret code').get_input(
+    password1 = StrInputSanitizer(default_value=None,
+                                  fall_prompt='Must input secret code').get_input(
         prompt='Your main secret code',
         password=True,
     )
 
 
+    generator = core.HashGenerator(password1=password1, max_length=max_length, allow_mode=allow_char_mode)
 
+    identification = StrInputSanitizer(default_value=None,
+                                       fall_prompt="input the identification for "
+                                                   "example, the site's domain").get_input(
+        prompt="identification, most use is site's domain, see the doc",
+    )
 
+    ret = generator.generate_password(identification)
+    print(ret)
 
 
 if __name__ == '__main__':

@@ -52,9 +52,10 @@ class IntInputSanitizer(BaseInputSanitizer):
         return result, True
 
 
-class PasswordInputSanitizer(BaseInputSanitizer):
+class StrInputSanitizer(BaseInputSanitizer):
     def clean(self, value):
         if value.strip() is '':
             return None, False
         else:
             return value, True
+
