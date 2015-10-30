@@ -52,6 +52,9 @@ class IntInputSanitizer(BaseInputSanitizer):
         except ValueError:
             return None, False
 
+        if result < 1:
+            return None, False
+
         return result, True
 
 
