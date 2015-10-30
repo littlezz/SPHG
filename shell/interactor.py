@@ -41,7 +41,8 @@ def run():
     )
 
     ret = generator.generate_password(identification)
-    print(ret)
+    print('-'*40)
+    print('generate password:', ret)
 
 
 if __name__ == '__main__':
