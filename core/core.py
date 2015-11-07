@@ -22,6 +22,8 @@ class BaseGenerator:
     """
     def __init__(self, password1, max_length=DEFAULT_MAX_LENGTH, allow_mode=ALL):
         assert isinstance(allow_mode, int), 'allow_mode must be integer'
+        assert  0 < allow_mode < 8, 'allow_mode exceed'
+        assert max_length > 0, 'max_length exceed'
 
         self.max_length = max_length
         self.allow_mode = allow_mode
